@@ -1,8 +1,12 @@
 const RETRY_LIMIT = 5
+const MODAL_TIMER = 3000
 const DEFAULT_VALUES = {firstName: '', lastName: '', email: '', phoneNumber: ''}
+// TODO: Update url for actual url
+const BETA_USER_URL = 'https://85220777-f923-4cf0-bea4-d8b509edfb1b.mock.pstmn.io/beta-user'
 
 const $form = document.getElementById('signup-form')
-const errorModal = new bootstrap.Modal(document.getElementById('error-modal'))
+const $errorModalEl = document.getElementById('error-modal')
+const errorModal = new bootstrap.Modal($errorModalEl)
 const $successModalEl = document.getElementById('success-modal')
 const succesModal = new bootstrap.Modal($successModalEl)
 
@@ -28,16 +32,9 @@ const attemptXhrRequest = () => {
     }
   }
 
-  // TODO: Update url for actual url
-  const url = 'https://85220777-f923-4cf0-bea4-d8b509edfb1b.mock.pstmn.io/beta-user'
-  xhr.open('POST', url, true)
+  xhr.open('POST', BETA_USER_URL, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.send(JSON.stringify({values}))
-}
-
-const handleSuccessModalHide = _ => {
-  values = DEFAULT_VALUES
-  $form.reset()
 }
 
 const handleSubmit = e => {
@@ -49,7 +46,17 @@ const handleChange = ({target: {name, value}}) => {
   values = {...values, [name]: value}
 }
 
+const handleSuccessModalHide = _ => {
+  values = DEFAULT_VALUES
+  $form.reset()
+}
+
+const closeModal = modal => modal.hide()
+const handleSuccessModalOpened = () => setTimeout(() => closeModal(succesModal), MODAL_TIMER)
+const handleErrorModalOpened = () => setTimeout(() => closeModal(errorModal), MODAL_TIMER)
+
 $form.addEventListener('submit', handleSubmit)
 $form.addEventListener('change', handleChange)
-
 $successModalEl.addEventListener('hide.bs.modal', handleSuccessModalHide)
+$successModalEl.addEventListener('shown.bs.modal', handleSuccessModalOpened)
+$errorModalEl.addEventListener('shown.bs.modal', handleErrorModalOpened)
