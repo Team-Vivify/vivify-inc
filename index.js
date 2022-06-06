@@ -31,7 +31,7 @@ const attemptXhrRequest = () => {
   // TODO: Update url for actual url
   const url = 'https://85220777-f923-4cf0-bea4-d8b509edfb1b.mock.pstmn.io/beta-user'
   xhr.open('POST', url, true)
-  xhr.setRequestHeader('Content-Type', 'applcation/json')
+  xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.send(JSON.stringify({values}))
 }
 
