@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(0deg, #b22234 -10%, #3c3b6e 50%);
+}
+
+h6,
+p {
+  color: #fff;
+}
+
+input.form-control,
+input.form-control:focus {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-internal-autofill-selected {
+  transition: background-color 5000s ease-in-out 0s;
+  color: #fff;
+  -webkit-text-fill-color: #fff !important;
+}
+
+label {
+  color: rgba(220, 220, 220);
+  font-weight: 200;
+}
+
+.container {
+  min-width: 200px;
+}
+
+.success-modal .modal-content {
+  background-color: rgb(12, 62, 39);
+  border: 1px solid #90ee90;
+}
+
+.success-modal .modal-content p {
+  color: #90ee90;
+  margin: 0;
+}
+
+.error-modal .modal-content {
+  background-color: rgb(62, 12, 12);
+  border: 1px solid #ee9090;
+}
+
+.error-modal .modal-content p {
+  color: #ee9090;
+  margin: 0;
+}
