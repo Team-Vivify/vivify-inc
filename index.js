@@ -32,16 +32,9 @@ const attemptXhrRequest = () => {
     }
   }
 
-  if ('withCredentials' in xhr) {
-    xhr.open('POST', BETA_USER_URL, true)
-  } else if (typeof XDomainRequest != 'undefined') {
-    xhr = new XDomainRequest()
-    xhr.open('POST', BETA_USER_URL)
-  } else {
-    return
-  }
+  xhr.open('POST', BETA_USER_URL, true)
   xhr.setRequestHeader('Content-Type', 'application/json')
-  xhr.send(JSON.stringify({values}))
+  xhr.send(JSON.stringify(values))
 }
 
 const handleSubmit = e => {
