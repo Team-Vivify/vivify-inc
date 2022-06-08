@@ -15,6 +15,7 @@ let attempts = 0
 const attemptXhrRequest = () => {
   attempts++
   var xhr = new XMLHttpRequest()
+
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
@@ -31,7 +32,14 @@ const attemptXhrRequest = () => {
     }
   }
 
-  xhr.open('POST', BETA_USER_URL, true)
+  if ('withCredentials' in xhr) {
+    xhr.open('POST', BETA_USER_URL, true)
+  } else if (typeof XDomainRequest != 'undefined') {
+    xhr = new XDomainRequest()
+    xhr.open('POST', BETA_USER_URL)
+  } else {
+    return
+  }
   xhr.setRequestHeader('Content-Type', 'application/json')
   xhr.send(JSON.stringify({values}))
 }
