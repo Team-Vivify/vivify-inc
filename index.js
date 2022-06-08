@@ -8,6 +8,7 @@ const $errorModalEl = document.getElementById('error-modal')
 const errorModal = new bootstrap.Modal($errorModalEl)
 const $successModalEl = document.getElementById('success-modal')
 const succesModal = new bootstrap.Modal($successModalEl)
+const $errorModalBody = $errorModalEl.querySelector('.modal-body')
 
 let values = DEFAULT_VALUES
 let attempts = 0
@@ -26,6 +27,12 @@ const attemptXhrRequest = () => {
           attemptXhrRequest()
         } else {
           attempts = 0
+          $errorModalBody.textContent = ''
+          const {errorMessages} = JSON.parse(xhr.response)
+          const text = document.createTextNode(errorMessages[0])
+          const $pTag = document.createElement('p')
+          $pTag.appendChild(text)
+          $errorModalBody.appendChild($pTag)
           errorModal.show()
         }
       }
