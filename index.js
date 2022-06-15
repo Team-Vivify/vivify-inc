@@ -1,7 +1,7 @@
 const RETRY_LIMIT = 5
 const MODAL_TIMER = 3000
 const DEFAULT_VALUES = {firstname: '', lastname: '', email: '', phoneNumber: ''}
-const BETA_USER_URL = 'https://dxvfsjy6g66q7.cloudfront.net/beta/profiles'
+const BETA_USER_URL = 'https://dxvfsjy6g66q7.cloudfront.net/beta/profiles/create'
 
 const $form = document.getElementById('signup-form')
 const $errorModalEl = document.getElementById('error-modal')
